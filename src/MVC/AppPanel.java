@@ -1,8 +1,6 @@
 package src.MVC;
 
-import mF.*;
-import tools.SafeFrame;
-import tools.Utilities;
+import src.mF.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,7 +10,7 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-public class AppPanel  extends View implements ActionListener {
+abstract public class AppPanel extends View implements ActionListener {
     private Turtle t;
     private ControlPanel controls;
     private View view;

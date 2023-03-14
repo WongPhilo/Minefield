@@ -1,13 +1,12 @@
 package src.MVC;
-
-import mF.*;
-import tools.*;
+import src.mF.*;
 
 import javax.swing.*;
 import java.awt.*;
 import java.beans.PropertyChangeEvent;
+import java.util.Observer;
 
-public class View extends JPanel implements Subscriber {
+abstract public class View extends JPanel implements Observer {
     private mineField mF;
 
     public void setField(mineField nmF) {

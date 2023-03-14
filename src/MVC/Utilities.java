@@ -1,4 +1,4 @@
-package src.tools;
+package src.MVC;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,4 +1,4 @@
-package src.MVC;
+package mvc;
 
 import java.beans.*;
 import java.io.*;
@@ -53,5 +53,5 @@ abstract public class Bean implements Serializable {
     public void removeVetoableChangeListener(VetoableChangeListener listener) {
         mVcs.removeVetoableChangeListener(listener);
     }
-
 }
+

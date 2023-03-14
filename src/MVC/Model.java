@@ -1,8 +1,8 @@
 package src.MVC;
-import tools.Publisher;
 
 import java.io.Serializable;
+import java.util.Observable;
 
-public class Model extends Publisher implements Serializable {
+public class Model extends Observable implements Serializable {
 	//model here
 }
