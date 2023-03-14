@@ -4,8 +4,8 @@ public interface AppFactory {
 	
 	 Model makeModel();
 	 View makeView(String type);
-	 String[] getViews();
-	 String[] getCommands();
+	 Command makeEditCommands(String name);
+	 String[] getEditCommands();
 	 String getTitle();
 	 String getHelp();
 	 String about();

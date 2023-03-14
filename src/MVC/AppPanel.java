@@ -11,13 +11,12 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 abstract public class AppPanel extends View implements ActionListener {
-    private Turtle t;
+    private mineField mf;
     private ControlPanel controls;
     private View view;
     private String savedName = "";
     public AppPanel() {
         mineField mf = new mineField();
-        view = new View();
         controls = new ControlPanel();
         this.setLayout((new GridLayout(1, 2)));
         this.add(controls);
@@ -47,43 +46,8 @@ abstract public class AppPanel extends View implements ActionListener {
         String cmmd = e.getActionCommand();
         try {
             switch (cmmd) {
-                case "NW": {
-                    mf.move(mF.Heading.NW);
-                    break;
-                }
-
-                case "N": {
-                    mf.move(mF.Heading.N);
-                    break;
-                }
-
-                case "NE": {
-                    mf.move(mF.Heading.NE);
-                    break;
-                }
-
-                case "W": {
-                    mf.move(mF.Heading.W);
-                    break;
-                }
-
-                case "E": {
-                    mf.move(mF.Heading.E);
-                    break;
-                }
-
-                case "SW": {
-                    mf.move(mF.Heading.SW);
-                    break;
-                }
-
-                case "S": {
-                    mf.move(mF.Heading.S);
-                    break;
-                }
-
-                case "SE": {
-                    mf.move(mF.Heading.SE);
+                case "NW", "N", "NE", "W", "E", "SW", "S", "SE": {
+                    new moveCommand(cmmd);
                     break;
                 }
 
@@ -91,7 +55,7 @@ abstract public class AppPanel extends View implements ActionListener {
                     String fName = Utilities.getFileName((String) null, true, savedName);
                     savedName = fName;
                     ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(fName));
-                    os.writeObject(this.mF);
+                    os.writeObject(this.mf);
                     os.close();
                     break;
                 }
@@ -100,7 +64,7 @@ abstract public class AppPanel extends View implements ActionListener {
                     String fName = JOptionPane.showInputDialog("What name would you like to save as?");
                     savedName = fName;
                     ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(fName));
-                    os.writeObject(this.mF);
+                    os.writeObject(this.mf);
                     os.close();
                     break;
                 }
@@ -108,10 +72,10 @@ abstract public class AppPanel extends View implements ActionListener {
                 case "Open": {
 
                     if (Utilities.confirm("Are you sure? Unsaved changes will be lost!")) {
-                        String fName = Utilities.getFileName((String) null, true);
+                        String fName = Utilities.getFileName((String) null, true, savedName);
                         ObjectInputStream is = new ObjectInputStream(new FileInputStream(fName));
-                        t = (mineField) is.readObject();
-                        view.setTurtle(t);
+                        mf = (mineField) is.readObject();
+                        view.setField(mf);
                         is.close();
                     }
 
@@ -120,8 +84,8 @@ abstract public class AppPanel extends View implements ActionListener {
 
                 case "New": {
                     if (Utilities.confirm("Are you sure? Unsaved changes will be lost!")) {
-                        t = new mineField();
-                        view.setTurtle(t);
+                        mf = new mineField();
+                        view.setField(mf);
                     }
                     break;
                 }
@@ -140,7 +104,8 @@ abstract public class AppPanel extends View implements ActionListener {
                 case "Help": {
                     String[] cmmds = new String[]{
                             "All four cardinal directions and all four of their composites are represented.",
-                            "Move in a certain direction to detect mines and find a safe way out."
+                            "Move in a certain direction to detect mines and find a safe way out.",
+                            "The goal is to reach the bottom-right corner without setting off any mines."
                     };
                     Utilities.inform(cmmds);
                     break;
@@ -153,7 +118,7 @@ abstract public class AppPanel extends View implements ActionListener {
     }
     class ControlPanel extends JPanel {
         public ControlPanel() {
-            setBackground(Color.PINK);
+            setBackground(Color.GRAY);
             GridLayout lm = new GridLayout(4, 2);
             setLayout(lm);
             JButton NW = new JButton("NW");

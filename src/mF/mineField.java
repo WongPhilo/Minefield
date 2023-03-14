@@ -5,25 +5,10 @@ class Field extends Model {
 }
 
 
-class mineFieldFactory implements AppFactory {
+abstract class mineFieldFactory implements AppFactory {
 
 	public Model makeModel() {
 
-	}
-}
-
-public class ChangeCommand extends Command {
-
-	public ChangeCommand(Model model) {
-		super(model);
-	}
-
-	public void execute() throws Exception {
-		if (!(model instanceof Stoplight)) {
-			throw new Exception("Model must instantiate Stoplight");
-		}
-		Stoplight light = (Stoplight)model;
-		light.change();
 	}
 }
 
