@@ -7,6 +7,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.Arrays;
 
 public class AppPanel extends JPanel implements ActionListener {
     protected Model model;
@@ -31,7 +32,9 @@ public class AppPanel extends JPanel implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         String cmmd = e.getActionCommand();
-        try {
+        if (Arrays.asList(factory.getEditCommands()).contains(cmmd)) {
+            factory.makeEditCommand(model, cmmd);
+        } else try {
             switch (cmmd) {
                 case "Save": {
                     String fName = Utilities.getFileName((String) null, true, savedName);
