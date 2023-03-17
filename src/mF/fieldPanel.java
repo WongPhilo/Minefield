@@ -7,10 +7,7 @@ import src.MVC.*;
 public class fieldPanel extends AppPanel {
     public fieldPanel(AppFactory factory) {
         super(factory);
-        controls.setLayout(new GridLayout(3, 2));
-
-        GridLayout lm = new GridLayout(4, 2);
-        setLayout(lm);
+        controls.setLayout(new GridLayout(4, 2));
         JButton NW = new JButton("NW");
         JButton N = new JButton("N");
         JButton NE = new JButton("NE");
@@ -47,7 +44,8 @@ public class fieldPanel extends AppPanel {
 
     public void actionPerformed(ActionEvent e) {
         String cmmd = e.getActionCommand();
-        if (factory.makeEditCommand(this.model, cmmd) != null) return;
+        super.actionPerformed(e);
+
         try {
             switch (cmmd) {
                 case "About": {
@@ -62,7 +60,7 @@ public class fieldPanel extends AppPanel {
                 }
             }
         } catch (Exception ex) {
-            Utilities.error(ex); // all error handling done here!
+            Utilities.error(ex);
         }
     }
 }
