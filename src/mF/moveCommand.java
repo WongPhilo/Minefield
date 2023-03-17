@@ -50,7 +50,7 @@ public class moveCommand extends Command {
                     break;
                 }
             }
-        } catch (Exception ex){
+        } catch (Exception ex) {
             Utilities.error(ex); // all error handling done here!
         }
     }

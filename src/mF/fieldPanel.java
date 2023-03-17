@@ -7,10 +7,7 @@ import src.MVC.*;
 public class fieldPanel extends AppPanel {
     public fieldPanel(AppFactory factory) {
         super(factory);
-        controls.setLayout(new GridLayout(3, 2));
-
-        GridLayout lm = new GridLayout(4, 2);
-        setLayout(lm);
+        controls.setLayout(new GridLayout(4, 2));
         JButton NW = new JButton("NW");
         JButton N = new JButton("N");
         JButton NE = new JButton("NE");
@@ -47,31 +44,23 @@ public class fieldPanel extends AppPanel {
 
     public void actionPerformed(ActionEvent e) {
         String cmmd = e.getActionCommand();
+        super.actionPerformed(e);
+
         try {
             switch (cmmd) {
-                case "NW", "N", "NE", "W", "E", "SW", "S", "SE": {
-                    new moveCommand(this.model, cmmd);
-                    break;
-                }
-
                 case "About": {
-                    Utilities.inform("2023 Spring 2023 CS-151 Sec 02 Team 7 - mineField - 2023");
+                    Utilities.inform(factory.about());
                     break;
                 }
 
                 case "Help": {
-                    String[] cmmds = new String[]{
-                            "All four cardinal directions and all four of their composites are represented.",
-                            "Move in a certain direction to detect mines and find a safe way out.",
-                            "The goal is to reach the bottom-right corner without setting off any mines."
-                    };
-                    Utilities.inform(cmmds);
+                    Utilities.inform(factory.getHelp());
                     break;
 
                 }
             }
         } catch (Exception ex) {
-            Utilities.error(ex); // all error handling done here!
+            Utilities.error(ex);
         }
     }
 }
