@@ -1,5 +1,15 @@
 package src.MVC;
 
 public class Command {
-    // todo
+    Model model;
+
+    public Command(Model model)
+    {
+        this.model = model;
+    }
+
+    public void execute()
+    {
+    }
+
 }
