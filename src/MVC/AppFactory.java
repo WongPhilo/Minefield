@@ -3,8 +3,8 @@ package src.MVC;
 public interface AppFactory {
 	
 	 Model makeModel();
-	 View makeView(String type);
-	 Command makeEditCommands(String name);
+	 View makeView(Model model);
+	 Command makeEditCommand(Model model, String type);
 	 String[] getEditCommands();
 	 String getTitle();
 	 String getHelp();
