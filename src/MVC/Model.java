@@ -1,10 +1,6 @@
 package src.MVC;
 
 import mvc.Bean;
-import java.io.Serializable;
-import java.util.Arrays;
-import java.util.Observable;
-
 public class Model extends Bean {
     private String fileName;
     private Boolean unsavedChanges;
