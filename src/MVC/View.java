@@ -4,7 +4,7 @@ import src.mF.*;
 import javax.swing.*;
 import java.util.Observer;
 
-abstract public class View extends JPanel implements Observer {
+abstract public class View extends JPanel {
     protected Model model;
 
     public View(Model model) {
@@ -13,7 +13,6 @@ abstract public class View extends JPanel implements Observer {
 
     public void setModel(Model model) {
         this.model = model;
-        if (model != null) { model.addObserver(this); }
     }
 
     public Model getModel() {

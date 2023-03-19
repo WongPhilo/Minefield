@@ -1,7 +1,7 @@
 package src.MVC;
 
 public class Command {
-    Model model;
+    protected Model model;
 
     public Command(Model model)
     {

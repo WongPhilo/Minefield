@@ -4,6 +4,7 @@ public class moveCommand extends Command {
 
     public moveCommand(Model field, String cmmd) {
         super(field);
+        execute(cmmd);
     }
 
     public void execute(String cmmd) {
