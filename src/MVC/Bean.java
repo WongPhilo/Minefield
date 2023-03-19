@@ -2,7 +2,6 @@ package src.MVC;
 
 import java.beans.*;
 import java.io.*;
-
 abstract public class Bean implements Serializable {
 
     private static final long serialVersionUID = 1L;
