@@ -121,7 +121,7 @@ class Field extends Model{
 	}
 }
 
-class Mine extends{
+class Mine{
 	public boolean mined;
 	public int nearby;
 	public boolean stepped;
