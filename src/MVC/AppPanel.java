@@ -90,6 +90,17 @@ public class AppPanel extends JPanel implements PropertyChangeListener, ActionLi
                         System.exit(0);
                     break;
                 }
+
+                case "About": {
+                    Utilities.inform(factory.about());
+                    break;
+                }
+
+                case "Help": {
+                    Utilities.inform(factory.getHelp());
+                    break;
+
+                }
             }
         } catch (Exception ex) {
             handleException(ex); // all error handling done here!
