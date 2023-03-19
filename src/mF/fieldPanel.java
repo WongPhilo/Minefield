@@ -32,10 +32,4 @@ public class fieldPanel extends AppPanel {
         button.addActionListener(this);
         controlPanel.add(button);
     }
-
-    public static void main(String[] args) {
-        AppFactory factory = new fieldFactory();
-        AppPanel panel = new fieldPanel(factory);
-        panel.run(factory);
-    }
 }
