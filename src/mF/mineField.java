@@ -12,7 +12,5 @@ class Field extends Model {
 }
 
 public class mineField {
-	public static void main(String args[]) {
-		fieldPanel.run(new fieldFactory());
-	}
+	public static void main(String args[]) { fieldPanel.run(new fieldFactory()); }
 }

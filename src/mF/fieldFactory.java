@@ -2,8 +2,6 @@ package src.mF;
 
 import src.MVC.*;
 
-import java.util.Arrays;
-
 public class fieldFactory implements AppFactory {
 
     public Model makeModel() {
@@ -16,8 +14,7 @@ public class fieldFactory implements AppFactory {
 
     @Override
     public Command makeEditCommand(Model model, String type) {
-        Heading[] arr = Heading.values();
-        if (Arrays.asList(arr).contains(type)) { return new moveCommand(model, type); }
+        if (type == "Move") { return new moveCommand(model, type); }
         return null;
     }
 

@@ -1,9 +1,11 @@
 package src.MVC;
 
+import mvc.Bean;
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.Observable;
 
-public class Model extends Observable implements Serializable {
+public class Model extends Bean {
     private String fileName;
     private Boolean unsavedChanges;
 
@@ -25,7 +27,6 @@ public class Model extends Observable implements Serializable {
 
     public void changed() {
         unsavedChanges = true;
-        this.setChanged();
-        this.notifyObservers();
+        firePropertyChange(fileName, false, true);
     }
 }

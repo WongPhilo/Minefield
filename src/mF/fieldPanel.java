@@ -7,7 +7,10 @@ import src.MVC.*;
 public class fieldPanel extends AppPanel {
     public fieldPanel(AppFactory factory) {
         super(factory);
-        controls.setLayout(new GridLayout(4, 2));
+        controlPanel.setLayout(new GridLayout(3, 2));
+
+        GridLayout lm = new GridLayout(4, 2);
+        setLayout(lm);
         JButton NW = new JButton("NW");
         JButton N = new JButton("N");
         JButton NE = new JButton("NE");
@@ -26,14 +29,14 @@ public class fieldPanel extends AppPanel {
         S.addActionListener(this);
         SE.addActionListener(this);
 
-        controls.add(NW);
-        controls.add(N);
-        controls.add(NE);
-        controls.add(W);
-        controls.add(E);
-        controls.add(SW);
-        controls.add(S);
-        controls.add(SE);
+        controlPanel.add(NW);
+        controlPanel.add(N);
+        controlPanel.add(NE);
+        controlPanel.add(W);
+        controlPanel.add(E);
+        controlPanel.add(SW);
+        controlPanel.add(S);
+        controlPanel.add(SE);
     }
 
     public static void main(String[] args) {
@@ -44,10 +47,13 @@ public class fieldPanel extends AppPanel {
 
     public void actionPerformed(ActionEvent e) {
         String cmmd = e.getActionCommand();
-        super.actionPerformed(e);
-
         try {
             switch (cmmd) {
+                case "NW", "N", "NE", "W", "E", "SW", "S", "SE": {
+                    new moveCommand(this.model, cmmd);
+                    break;
+                }
+
                 case "About": {
                     Utilities.inform(factory.about());
                     break;
@@ -60,7 +66,7 @@ public class fieldPanel extends AppPanel {
                 }
             }
         } catch (Exception ex) {
-            Utilities.error(ex);
+            handleException(ex); // all error handling done here!
         }
     }
 }

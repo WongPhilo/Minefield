@@ -3,23 +3,32 @@ package src.MVC;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Arrays;
 
-public class AppPanel extends JPanel implements ActionListener {
+public class AppPanel extends JPanel implements PropertyChangeListener, ActionListener {
     protected Model model;
-    protected View view;
     protected AppFactory factory;
-    protected ControlPanel controls;
+    protected View view;
+    protected JPanel controlPanel; // not a separate class!
+    private SafeFrame frame;
+    public static int FRAME_WIDTH = 500;
+    public static int FRAME_HEIGHT = 300;
     private String savedName = "";
     public AppPanel(AppFactory factory) {
-        controls = new ControlPanel();
-        this.add(controls);
-        this.add(view);
+        super();
         this.factory = factory;
+        this.model = factory.makeModel();
+        model.addPropertyChangeListener(this);
+        this.view = factory.makeView(model);
+        controlPanel = new ControlPanel();
+        this.add(controlPanel);
+        this.add(view);
     }
 
     protected JMenuBar createMenuBar() {
@@ -83,25 +92,42 @@ public class AppPanel extends JPanel implements ActionListener {
                 }
             }
         } catch (Exception ex) {
-            Utilities.error(ex); // all error handling done here!
+            handleException(ex); // all error handling done here!
         }
+    }
+
+    protected void handleException(Exception e) {
+        Utilities.error(e);
     }
 
     public static void run(AppFactory factory) {
         try {
             AppPanel panel = new AppPanel(factory);
-            panel.setSize(800,600);
+            panel.setSize(FRAME_WIDTH, FRAME_HEIGHT);
             // create my frame with menus and display it
             SafeFrame frame = new SafeFrame();
             Container cp = frame.getContentPane();
             cp.add(panel);
             frame.setJMenuBar(panel.createMenuBar());
+            frame.setTitle(factory.getTitle());
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.setVisible(true);
             panel.setVisible(true);
-        } catch(Exception e) {
+        } catch (Exception e) {
             Utilities.error("" + e);
         }
-
+    }
+    public void setModel(Model newModel) {
+        this.model.removePropertyChangeListener(this);
+        this.model = newModel;
+        this.model.initSupport(); // defined in Bean
+        this.model.addPropertyChangeListener(this);
+        view.setModel(this.model);
+        model.changed();
+    }
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        repaint();
     }
 
     protected class EditHandler implements ActionListener {
@@ -115,10 +141,6 @@ public class AppPanel extends JPanel implements ActionListener {
     protected class ControlPanel extends JPanel {
         public ControlPanel() {
             setBackground(Color.GRAY);
-        }
-
-        public void add(JButton button) {
-            this.add(button);
         }
     }
 }
