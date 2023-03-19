@@ -1,19 +1,33 @@
 package src.MVC;
-
 import src.mF.*;
+
 import javax.swing.*;
-abstract public class View extends JPanel {
+
+import java.awt.*;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
+abstract public class View extends JPanel implements PropertyChangeListener {
+
+
     protected Model model;
 
-    public View(Model model) {
-        this.model = model;
+    public View(Model m) {
+        model = m;
+        model.addPropertyChangeListener(this);
     }
 
-    public void setModel(Model model) {
-        this.model = model;
+
+    public void setModel(Model newModel) {
+        model.removePropertyChangeListener(this);
+        model = newModel;
+        model.addPropertyChangeListener(this);
+        repaint();
     }
 
-    public Model getModel() {
-        return this.model;
+
+    public void propertyChange(PropertyChangeEvent evt ) {
+        System.out.println("Property changed in view: REPAINTING");
+        repaint();
     }
 }
