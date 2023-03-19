@@ -158,9 +158,9 @@ class Mine{
 	}
 }
 
-public class MineField{
+public class mineField{
 
-	public MineField(){
+	public mineField(){
 
 	}
 	public static void main(String args[]) {
