@@ -159,6 +159,7 @@ class Mine{
 }
 
 public class mineField{
+
 	public mineField(){
 
 	}
