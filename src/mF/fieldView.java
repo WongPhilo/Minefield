@@ -13,10 +13,4 @@ public class fieldView extends View {
         shape.draw((Graphics2D) gc);
         gc.setColor(oldColor);
     }
-
-    @Override
-    public void update(Observable o, Object arg) {
-        Field field = (Field) model;
-        repaint();
-    }
 }

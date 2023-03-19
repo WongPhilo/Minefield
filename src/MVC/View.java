@@ -2,8 +2,6 @@ package src.MVC;
 
 import src.mF.*;
 import javax.swing.*;
-import java.util.Observer;
-
 abstract public class View extends JPanel {
     protected Model model;
 
