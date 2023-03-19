@@ -1,4 +1,5 @@
 package src.MVC;
+
 public class Model extends Bean {
     private String fileName;
     private Boolean unsavedChanges;
