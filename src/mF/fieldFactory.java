@@ -65,7 +65,7 @@ public class fieldFactory implements AppFactory {
     public String getHelp() {
         return new String("All four cardinal directions and all four of their composites are represented. " +
                 "Move in a certain direction to detect mines and find a safe way out. " +
-                "The goal is to reach the bottom-right corner without setting off any mines.");
+                "The goal is to reach the bottom-right corner, bordered in green, without setting off any mines.");
     }
 
     @Override
