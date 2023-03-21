@@ -2,6 +2,7 @@ package src.MVC;
 import src.mF.*;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 
 import java.awt.*;
 import java.beans.PropertyChangeEvent;
@@ -17,6 +18,9 @@ public class View extends JPanel implements PropertyChangeListener {
     public View(Model m) {
         this.model = m;
         setSize(FRAME_WIDTH, FRAME_HEIGHT);
+        Border blackline = BorderFactory.createLineBorder(Color.black);
+        setBorder(blackline);
+        setBackground((Color.WHITE));
         model.addPropertyChangeListener(this);
     }
 

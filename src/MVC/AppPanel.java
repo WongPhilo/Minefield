@@ -1,6 +1,7 @@
 package src.MVC;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.*;
 import java.beans.PropertyChangeEvent;
@@ -27,6 +28,7 @@ public class AppPanel extends JPanel implements PropertyChangeListener, ActionLi
         if (model != null) model.addPropertyChangeListener(this);
         this.view = factory.makeView(model);
         controlPanel = new ControlPanel();
+        this.setLayout(new GridLayout(3, 3));
         this.add(controlPanel);
         this.add(view);
         controlPanel.setVisible(true);
@@ -146,6 +148,8 @@ public class AppPanel extends JPanel implements PropertyChangeListener, ActionLi
     protected class ControlPanel extends JPanel {
         public ControlPanel() {
             setBackground(Color.LIGHT_GRAY);
+            Border blackline = BorderFactory.createLineBorder(Color.black);
+            setBorder(blackline);
             setLayout(new GridLayout(3, 3));
         }
     }

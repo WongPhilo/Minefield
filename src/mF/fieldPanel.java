@@ -17,22 +17,25 @@ public class fieldPanel extends AppPanel {
         JButton S = new JButton("S");
         JButton SE = new JButton("SE");
 
-        buttonAssigner(NW, this);
-        buttonAssigner(N, this);
-        buttonAssigner(NE, this);
-        buttonAssigner(W, this);
+        controlPanel.add(NW);
+        controlPanel.add(N);
+        controlPanel.add(NE);
+        controlPanel.add(W);
         controlPanel.add(filler);
-        buttonAssigner(E, this);
-        buttonAssigner(SW, this);
-        buttonAssigner(S, this);
-        buttonAssigner(SE, this);
-    }
+        controlPanel.add(E);
+        controlPanel.add(SW);
+        controlPanel.add(S);
+        controlPanel.add(SE);
 
-    public void buttonAssigner(JButton button, fieldPanel panel) {
-        button.addActionListener(panel);
-        controlPanel.add(button);
+        NW.addActionListener(this);
+        N.addActionListener(this);
+        NE.addActionListener(this);
+        W.addActionListener(this);
+        E.addActionListener(this);
+        SW.addActionListener(this);
+        S.addActionListener(this);
+        SE.addActionListener(this);
     }
-
     public static void main(String args[]) {
         AppPanel field = fieldPanel.run(new fieldFactory());
         field.display();
