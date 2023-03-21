@@ -166,6 +166,15 @@ class Field extends Model {
 				Utilities.inform("Must stay one the grid.");
 			}
 		}
+		if(heading == Heading.S)
+		{
+			currentX++;
+			if(currentX>=size)
+			{
+				currentX--;
+				Utilities.inform("Must stay one the grid.");
+			}
+		}
 		current = mines[currentX][currentY];
 		current.setStepped(true);
 		if(current.isMined())
