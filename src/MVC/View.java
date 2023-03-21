@@ -9,7 +9,6 @@ import java.beans.PropertyChangeListener;
 
 abstract public class View extends JPanel implements PropertyChangeListener {
 
-
     protected Model model;
 
     public View(Model m) {
@@ -17,17 +16,13 @@ abstract public class View extends JPanel implements PropertyChangeListener {
         model.addPropertyChangeListener(this);
     }
 
-
     public void setModel(Model newModel) {
         model.removePropertyChangeListener(this);
         model = newModel;
         model.addPropertyChangeListener(this);
         repaint();
     }
-
-
     public void propertyChange(PropertyChangeEvent evt ) {
-        System.out.println("Property changed in view: REPAINTING");
         repaint();
     }
 }

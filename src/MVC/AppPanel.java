@@ -33,7 +33,7 @@ public class AppPanel extends JPanel implements PropertyChangeListener, ActionLi
 
     protected JMenuBar createMenuBar() {
         JMenuBar result = new JMenuBar();
-        result.add(Utilities.makeMenu("File", new String[]{"New", "Save", "SaveAs", "Open", "Quit"}, this));
+        result.add(Utilities.makeMenu("File", new String[]{"New", "Save", "SaveAs", "Open", "Quit", "About", "Help"}, this));
         result.add(Utilities.makeMenu("Edit", factory.getEditCommands(), this));
         return result;
     }

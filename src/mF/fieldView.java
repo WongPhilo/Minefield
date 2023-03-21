@@ -19,7 +19,7 @@ public class fieldView extends View {
         super.paintComponent(gc);
         Color oldColor = gc.getColor();
         Field field = (Field)model;
-        fieldShape shape = new fieldShape(field);
+        fieldShape shape = new fieldShape(field, field.size);
         shape.draw((Graphics2D) gc);
         gc.setColor(oldColor);
     }

@@ -2,15 +2,12 @@ package src.mF;
 import java.awt.*;
 public class fieldShape {
     private Field field;
-    private int height, width;
-    public fieldShape(Field field, int height, int width) {
+    private int height = 500;
+    private int width = 300;
+    private int size;
+    public fieldShape(Field field, int size) {
         this.field = field;
-        this.height = height;
-        this.width = width;
-    }
-
-    public fieldShape(Field field) {
-        this(field, 500, 300);
+        this.size = size;
     }
     public Field getField() {
         return field;
@@ -24,9 +21,9 @@ public class fieldShape {
         Color oldColor = gc.getColor();
         gc.setColor(Color.BLACK);
 
-        int rh = height / (20);
-        int rw = width / (20);
-        for (int i = 0; i < 20; i++) {
+        int rh = height / size;
+        int rw = width / size;
+        for (int i = 0; i < size; i++) {
             gc.drawLine(0, i * rh, width, i * rh);
             gc.drawLine(i * rw, 0, i * rw, height);
         }

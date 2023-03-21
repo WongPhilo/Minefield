@@ -20,7 +20,7 @@ class Field extends Model{
 	public void setMines()
 	{
 		int random = 0;
-		for(int i = 0; i<size; i++) {
+		for(int i = 0; i < size; i++) {
 			for (int j = 0; j < size; j++) {
 				random = (int) (Math.random() * 100);
 				if (random <= percentMined-1) {
@@ -31,9 +31,9 @@ class Field extends Model{
 			}
 		}
 		mines[0][0] = new Mine(false);
-		mines[20][20] = new Mine(false);
+		mines[size - 1][size - 1] = new Mine(false);
 		int nearby = 0;
-		for(int i = 0; i<size; i++) {
+		for(int i = 0; i < size; i++) {
 			for (int j = 0; j < size; j++) {
 				nearby = 0;
 				if(i-1>=0)
@@ -169,7 +169,7 @@ class Field extends Model{
 		{
 			gameOver(false);
 		}
-		else if(current == mines[20][20])
+		else if(current == mines[size - 1][size - 1])
 		{
 			gameOver(true);
 		}
