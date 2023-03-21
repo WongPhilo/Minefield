@@ -35,9 +35,11 @@ public class fieldPanel extends AppPanel {
         SW.addActionListener(this);
         S.addActionListener(this);
         SE.addActionListener(this);
+
+        controlPanel.setVisible(true);
+        this.display();
     }
     public static void main(String args[]) {
-        AppPanel field = fieldPanel.run(new fieldFactory());
-        field.display();
+        fieldPanel.run(new fieldFactory());
     }
 }

@@ -31,8 +31,6 @@ public class AppPanel extends JPanel implements PropertyChangeListener, ActionLi
         this.setLayout(new GridLayout(3, 3));
         this.add(controlPanel);
         this.add(view);
-        controlPanel.setVisible(true);
-        view.setVisible(true);
 
         // create my frame with menus and display it
         frame = new SafeFrame();
@@ -42,15 +40,14 @@ public class AppPanel extends JPanel implements PropertyChangeListener, ActionLi
         frame.setTitle(factory.getTitle());
         frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setVisible(true);
-        frame.setVisible(true);
         display();
     }
 
     protected JMenuBar createMenuBar() {
         JMenuBar result = new JMenuBar();
-        result.add(Utilities.makeMenu("File", new String[]{"New", "Save", "SaveAs", "Open", "Quit", "About", "Help"}, this));
+        result.add(Utilities.makeMenu("File", new String[]{"New", "Save", "SaveAs", "Open", "Quit"}, this));
         result.add(Utilities.makeMenu("Edit", factory.getEditCommands(), this));
+        result.add(Utilities.makeMenu("Help", new String[]{"About", "Help"}, this));
         return result;
     }
 
@@ -134,9 +131,8 @@ public class AppPanel extends JPanel implements PropertyChangeListener, ActionLi
         model.changed();
     }
 
-    public static AppPanel run(AppFactory factory) {
-        AppPanel field = new AppPanel(factory);
-        return field;
+    public static void run(AppFactory factory) {
+        new AppPanel(factory);
     }
 
     public void display() { frame.setVisible(true); }
@@ -151,6 +147,7 @@ public class AppPanel extends JPanel implements PropertyChangeListener, ActionLi
             Border blackline = BorderFactory.createLineBorder(Color.black);
             setBorder(blackline);
             setLayout(new GridLayout(3, 3));
+            this.setVisible(true);
         }
     }
 }
