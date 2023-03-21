@@ -232,6 +232,8 @@ public class mineField{
 
 	}
 	public static void main(String args[]) {
-		fieldPanel.run(new fieldFactory());
+		AppFactory factory = new fieldFactory();
+		AppPanel panel = new fieldPanel(factory);
+		panel.display();
 	}
 }

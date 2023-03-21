@@ -7,43 +7,40 @@ import javax.swing.border.Border;
 
 import src.MVC.*;
 public class fieldPanel extends AppPanel {
+    private JButton NW, N, NE, W, filler, E, SE, S, SW;
     public fieldPanel(AppFactory factory) {
         super(factory);
 
-        JButton NW = new JButton("NW");
-        JButton N = new JButton("N");
-        JButton NE = new JButton("NE");
-        JButton W = new JButton("W");
-        JButton filler = new JButton("");
-        JButton E = new JButton("E");
-        JButton SW = new JButton("SW");
-        JButton S = new JButton("S");
-        JButton SE = new JButton("SE");
+        NW = new JButton("NW");
+        N = new JButton("N");
+        NE = new JButton("NE");
+        W = new JButton("W");
+        filler = new JButton("");
+        E = new JButton("E");
+        SW = new JButton("SW");
+        S = new JButton("S");
+        SE = new JButton("SE");
 
-        buttonAdder(NW, (ControlPanel) controlPanel);
-        buttonAdder(N, (ControlPanel) controlPanel);
-        buttonAdder(NE, (ControlPanel) controlPanel);
-        buttonAdder(W, (ControlPanel) controlPanel);
-        JPanel jp = new JPanel();
-        jp.add(filler);
-        controlPanel.add(jp);
-        buttonAdder(E, (ControlPanel) controlPanel);
-        buttonAdder(SW, (ControlPanel) controlPanel);
-        buttonAdder(S, (ControlPanel) controlPanel);
-        buttonAdder(SE, (ControlPanel) controlPanel);
+        buttonAdder(NW, this, controlPanel);
+        buttonAdder(N, this, controlPanel);
+        buttonAdder(NE, this, controlPanel);
+        buttonAdder(W, this, controlPanel);
+        controlPanel.add(filler);
+        buttonAdder(E, this, controlPanel);
+        buttonAdder(SW, this, controlPanel);
+        buttonAdder(S, this, controlPanel);
+        buttonAdder(SE, this, controlPanel);
 
         controlPanel.setVisible(true);
-        this.display();
     }
 
-    public static void buttonAdder(JButton b, ControlPanel p) {
-        JPanel jp = new JPanel();
-        b.addActionListener((ActionListener) p);
-        jp.add(b);
-        p.add(jp);
-        p.setVisible(true);
+    public static void buttonAdder(JButton b, AppPanel p, JPanel c) {
+        b.addActionListener(p);
+        c.add(b);
     }
     public static void main(String args[]) {
-        fieldPanel.run(new fieldFactory());
+        AppFactory factory = new fieldFactory();
+        AppPanel panel = new fieldPanel(factory);
+        panel.display();
     }
 }
