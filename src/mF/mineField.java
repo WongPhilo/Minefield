@@ -3,7 +3,7 @@ import src.MVC.*;
 
 import javax.swing.*;
 
-class Field extends Model{
+class Field extends Model {
 	public static int percentMined = 5;
 	public static int size = 20;
 	boolean gameOver; //if true, JOptionPane an alert and make a new board when it's dismissed

@@ -12,19 +12,17 @@ import static src.MVC.AppPanel.FRAME_WIDTH;
 import static src.mF.Field.size;
 
 public class fieldView extends View {
-    Mine[][] mineview;
     public fieldView(Field m) {
         super(m);
         int dim = size;
-        mineview = new Mine[dim][dim];
         setLayout(new GridLayout(dim, dim));
         for (int row = 0; row < dim; row++) {
             for (int col = 0; col < dim; col++) {
-                mineview[row][col] = m.mines[row][col];
-                mineview[row][col].setText("?");
-                mineview[row][col].setBorder(BorderFactory.createLineBorder(Color.black));
+                m.mines[row][col] = m.mines[row][col];
+                m.mines[row][col].setText("?");
+                m.mines[row][col].setBorder(BorderFactory.createLineBorder(Color.black));
 
-                this.add(mineview[row][col]);
+                this.add(m.mines[row][col]);
             }
         }
     }
@@ -34,7 +32,8 @@ public class fieldView extends View {
         super.paintComponent(gc);
         Color oldColor = gc.getColor();
         Field field = (Field)model;
-
+        field.mines[field.currentX][field.currentY].setText(String.valueOf(field.mines[field.currentX][field.currentY].getNearby()));
+        field.mines[field.currentX][field.currentY].setBorder(BorderFactory.createLineBorder(Color.white));
         gc.setColor(oldColor);
     }
 
