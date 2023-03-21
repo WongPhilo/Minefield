@@ -1,7 +1,13 @@
 package src.mF;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.Arrays;
 import javax.swing.*;
 import javax.swing.border.Border;
 
@@ -34,6 +40,18 @@ public class fieldPanel extends AppPanel {
         controlPanel.setVisible(true);
     }
 
+    public void actionPerformed(ActionEvent e) {
+        String cmmd = e.getActionCommand();
+        try {
+            if (Arrays.asList(factory.getEditCommands()).contains(cmmd)) {
+                factory.makeEditCommand(model, cmmd, this).execute();
+            }
+        } catch (Exception ex) {
+            handleException(ex); // all error handling done here!
+        }
+
+        super.actionPerformed(e);
+    }
     public static void buttonAdder(JButton b, AppPanel p, JPanel c) {
         b.addActionListener(p);
         c.add(b);

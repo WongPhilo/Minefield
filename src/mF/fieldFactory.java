@@ -13,8 +13,41 @@ public class fieldFactory implements AppFactory {
     }
 
     @Override
-    public Command makeEditCommand(Model model, String type) {
-        if (type == "Move") { return new moveCommand(model, type); }
+    public Command makeEditCommand(Model model, String type, Object source) {
+        switch (type) {
+            case "NW": {
+                return new moveCommand(model, Heading.NW);
+            }
+
+            case "N": {
+                return new moveCommand(model, Heading.N);
+            }
+
+            case "NE": {
+                return new moveCommand(model, Heading.NE);
+            }
+
+            case "W": {
+                return new moveCommand(model, Heading.W);
+            }
+
+            case "E": {
+                return new moveCommand(model, Heading.E);
+            }
+
+            case "SW": {
+                return new moveCommand(model, Heading.SW);
+            }
+
+            case "S": {
+                return new moveCommand(model, Heading.S);
+            }
+
+            case "SE": {
+                return new moveCommand(model, Heading.SE);
+            }
+        }
+
         return null;
     }
 

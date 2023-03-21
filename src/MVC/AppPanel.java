@@ -54,9 +54,7 @@ public class AppPanel extends JPanel implements PropertyChangeListener, ActionLi
 
     public void actionPerformed(ActionEvent e) {
         String cmmd = e.getActionCommand();
-        if (Arrays.asList(factory.getEditCommands()).contains(cmmd)) {
-            factory.makeEditCommand(model, cmmd);
-        } else try {
+        try {
             switch (cmmd) {
                 case "Save": {
                     String fName = Utilities.getFileName((String) null, true, savedName);
