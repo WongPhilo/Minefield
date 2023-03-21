@@ -101,7 +101,7 @@ class Field extends Model {
 			if(currentX<0)
 			{
 				currentX++;
-				Utilities.inform("Must stay one the grid.");
+				Utilities.inform("Must stay on the grid.");
 			}
 		}
 		if(heading == Heading.NE)
@@ -112,7 +112,7 @@ class Field extends Model {
 			{
 				currentY--;
 				currentX++;
-				Utilities.inform("Must stay one the grid.");
+				Utilities.inform("Must stay on the grid.");
 			}
 		}
 		if(heading == Heading.NW)
@@ -123,7 +123,7 @@ class Field extends Model {
 			{
 				currentY++;
 				currentX++;
-				Utilities.inform("Must stay one the grid.");
+				Utilities.inform("Must stay on the grid.");
 			}
 		}
 		if(heading == Heading.E)
@@ -132,7 +132,7 @@ class Field extends Model {
 			if(currentY>=size)
 			{
 				currentY--;
-				Utilities.inform("Must stay one the grid.");
+				Utilities.inform("Must stay on the grid.");
 			}
 		}
 		if(heading == Heading.W)
@@ -141,7 +141,7 @@ class Field extends Model {
 			if(currentY<0)
 			{
 				currentY++;
-				Utilities.inform("Must stay one the grid.");
+				Utilities.inform("Must stay on the grid.");
 			}
 		}
 		if(heading == Heading.SE)
@@ -152,7 +152,7 @@ class Field extends Model {
 			{
 				currentY--;
 				currentX--;
-				Utilities.inform("Must stay one the grid.");
+				Utilities.inform("Must stay on the grid.");
 			}
 		}
 		if(heading == Heading.SW)
@@ -163,7 +163,7 @@ class Field extends Model {
 			{
 				currentY++;
 				currentX--;
-				Utilities.inform("Must stay one the grid.");
+				Utilities.inform("Must stay on the grid.");
 			}
 		}
 		if(heading == Heading.S)
@@ -172,7 +172,7 @@ class Field extends Model {
 			if(currentX>=size)
 			{
 				currentX--;
-				Utilities.inform("Must stay one the grid.");
+				Utilities.inform("Must stay on the grid.");
 			}
 		}
 		current = mines[currentX][currentY];

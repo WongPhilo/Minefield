@@ -1,6 +1,7 @@
 package src.mF;
 
 import src.MVC.*;
+import src.MVC.Model;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -18,7 +19,6 @@ public class fieldView extends View {
         setLayout(new GridLayout(dim, dim));
         for (int row = 0; row < dim; row++) {
             for (int col = 0; col < dim; col++) {
-                m.mines[row][col] = m.mines[row][col];
                 m.mines[row][col].setText("?");
                 if (row == dim - 1 && col == dim - 1) {
                     m.mines[row][col].setBorder(BorderFactory.createLineBorder(Color.GREEN));
@@ -34,12 +34,9 @@ public class fieldView extends View {
     //display to user to the screen, display mineField (code) grid 2020
     public void paintComponent(Graphics gc) {
         super.paintComponent(gc);
-        Color oldColor = gc.getColor();
         Field field = (Field)model;
         field.mines[field.currentX][field.currentY].setText(String.valueOf(field.mines[field.currentX][field.currentY].getNearby()));
         field.mines[field.currentX][field.currentY].setBorder(BorderFactory.createLineBorder(Color.white));
-        gc.setColor(oldColor);
     }
-
 }
 
