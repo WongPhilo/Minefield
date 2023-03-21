@@ -1,58 +1,14 @@
 package src.mF;
 import src.MVC.*;
 public class moveCommand extends Command {
-
-    public moveCommand(Model field, String cmmd) {
+    private Heading heading;
+    public moveCommand(Model field, Heading h) {
         super(field);
-        execute(cmmd);
+        this.heading = h;
     }
 
-    public void execute(String cmmd) {
+    public void execute() {
         Field field = (Field)model;
-        try {
-            switch (cmmd) {
-                case "NW": {
-                    field.move(Heading.NW);
-                    break;
-                }
-
-                case "N": {
-                    field.move(Heading.N);
-                    break;
-                }
-
-                case "NE": {
-                    field.move(Heading.NE);
-                    break;
-                }
-
-                case "W": {
-                    field.move(Heading.W);
-                    break;
-                }
-
-                case "E": {
-                    field.move(Heading.E);
-                    break;
-                }
-
-                case "SW": {
-                    field.move(Heading.SW);
-                    break;
-                }
-
-                case "S": {
-                    field.move(Heading.S);
-                    break;
-                }
-
-                case "SE": {
-                    field.move(Heading.SE);
-                    break;
-                }
-            }
-        } catch (Exception ex) {
-            Utilities.error(ex); // all error handling done here!
-        }
+        field.move(heading);
     }
 }

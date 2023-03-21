@@ -20,7 +20,11 @@ public class fieldView extends View {
             for (int col = 0; col < dim; col++) {
                 m.mines[row][col] = m.mines[row][col];
                 m.mines[row][col].setText("?");
-                m.mines[row][col].setBorder(BorderFactory.createLineBorder(Color.black));
+                if (row == dim - 1 && col == dim - 1) {
+                    m.mines[row][col].setBorder(BorderFactory.createLineBorder(Color.GREEN));
+                } else {
+                    m.mines[row][col].setBorder(BorderFactory.createLineBorder(Color.BLACK));
+                }
 
                 this.add(m.mines[row][col]);
             }
