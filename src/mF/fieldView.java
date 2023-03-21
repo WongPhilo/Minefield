@@ -24,10 +24,5 @@ public class fieldView extends View {
         gc.setColor(oldColor);
     }
 
-
-
-    public void propertyChange(PropertyChangeEvent evt) {
-        Model field = new Field();
-    }
 }
 
