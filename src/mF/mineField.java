@@ -1,5 +1,8 @@
 package src.mF;
 import src.MVC.*;
+
+import javax.swing.*;
+
 class Field extends Model{
 	public static int percentMined = 5;
 	public static int size = 20;
@@ -189,7 +192,7 @@ class Field extends Model{
 	}
 }
 
-class Mine{
+class Mine extends JLabel {
 	public boolean mined;
 	public int nearby;
 	public boolean stepped;

@@ -14,6 +14,7 @@ import static src.MVC.AppPanel.FRAME_WIDTH;
 public class View extends JPanel implements PropertyChangeListener {
 
     protected Model model;
+    protected Container container;
 
     public View(Model m) {
         this.model = m;

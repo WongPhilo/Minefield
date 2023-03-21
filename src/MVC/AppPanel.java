@@ -18,8 +18,8 @@ public class AppPanel extends JPanel implements PropertyChangeListener, ActionLi
     protected View view;
     protected JPanel controlPanel; // not a separate class!
     private SafeFrame frame;
-    public static int FRAME_WIDTH = 500;
-    public static int FRAME_HEIGHT = 300;
+    public static int FRAME_WIDTH = 1000;
+    public static int FRAME_HEIGHT = 1400;
     private String savedName = "";
     public AppPanel(AppFactory factory) {
         super();
@@ -130,11 +130,6 @@ public class AppPanel extends JPanel implements PropertyChangeListener, ActionLi
         view.setModel(this.model);
         model.changed();
     }
-
-    public static void run(AppFactory factory) {
-        new AppPanel(factory);
-    }
-
     public void display() { frame.setVisible(true); }
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
