@@ -1,6 +1,7 @@
 package src.mF;
 
 import java.awt.*;
+import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.border.Border;
 
@@ -19,25 +20,25 @@ public class fieldPanel extends AppPanel {
         JButton S = new JButton("S");
         JButton SE = new JButton("SE");
 
-        buttonAdder(NW, this);
-        buttonAdder(N, this);
-        buttonAdder(NE, this);
-        buttonAdder(W, this);
+        buttonAdder(NW, (ControlPanel) controlPanel);
+        buttonAdder(N, (ControlPanel) controlPanel);
+        buttonAdder(NE, (ControlPanel) controlPanel);
+        buttonAdder(W, (ControlPanel) controlPanel);
         JPanel jp = new JPanel();
         jp.add(filler);
         controlPanel.add(jp);
-        buttonAdder(E, this);
-        buttonAdder(SW, this);
-        buttonAdder(S, this);
-        buttonAdder(SE, this);
+        buttonAdder(E, (ControlPanel) controlPanel);
+        buttonAdder(SW, (ControlPanel) controlPanel);
+        buttonAdder(S, (ControlPanel) controlPanel);
+        buttonAdder(SE, (ControlPanel) controlPanel);
 
         controlPanel.setVisible(true);
         this.display();
     }
 
-    public static void buttonAdder(JButton b, fieldPanel p) {
+    public static void buttonAdder(JButton b, ControlPanel p) {
         JPanel jp = new JPanel();
-        b.addActionListener(p);
+        b.addActionListener((ActionListener) p);
         jp.add(b);
         p.add(jp);
         p.setVisible(true);

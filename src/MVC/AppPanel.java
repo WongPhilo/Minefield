@@ -141,13 +141,18 @@ public class AppPanel extends JPanel implements PropertyChangeListener, ActionLi
         repaint();
     }
 
-    protected class ControlPanel extends JPanel {
+    protected class ControlPanel extends JPanel implements PropertyChangeListener {
         public ControlPanel() {
             setBackground(Color.LIGHT_GRAY);
             Border blackline = BorderFactory.createLineBorder(Color.black);
             setBorder(blackline);
             setLayout(new GridLayout(3, 3));
             this.setVisible(true);
+        }
+
+        @Override
+        public void propertyChange(PropertyChangeEvent evt) {
+            repaint();
         }
     }
 }
