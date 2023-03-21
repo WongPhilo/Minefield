@@ -97,21 +97,21 @@ class Field extends Model {
 		// if (heading = Heading.NW) .. blah blah blah, move and stuff
 		if(heading == Heading.N)
 		{
-			currentY--;
-			if(currentY<0)
+			currentX--;
+			if(currentX<0)
 			{
-				currentY++;
+				currentX++;
 				Utilities.inform("Must stay one the grid.");
 			}
 		}
 		if(heading == Heading.NE)
 		{
-			currentY--;
-			currentX++;
-			if(currentY<0 || currentX>=size)
+			currentY++;
+			currentX--;
+			if(currentX<0 || currentY>=size)
 			{
-				currentY++;
-				currentX--;
+				currentY--;
+				currentX++;
 				Utilities.inform("Must stay one the grid.");
 			}
 		}
@@ -128,19 +128,19 @@ class Field extends Model {
 		}
 		if(heading == Heading.E)
 		{
-			currentX++;
-			if(currentX>=size)
+			currentY++;
+			if(currentY>=size)
 			{
-				currentX--;
+				currentY--;
 				Utilities.inform("Must stay one the grid.");
 			}
 		}
 		if(heading == Heading.W)
 		{
-			currentX--;
-			if(currentX<0)
+			currentY--;
+			if(currentY<0)
 			{
-				currentX++;
+				currentY++;
 				Utilities.inform("Must stay one the grid.");
 			}
 		}
@@ -157,12 +157,12 @@ class Field extends Model {
 		}
 		if(heading == Heading.SW)
 		{
-			currentY++;
-			currentX--;
-			if(currentY>=size || currentX<0)
+			currentY--;
+			currentX++;
+			if(currentY<0 || currentX>=size)
 			{
-				currentY--;
-				currentX++;
+				currentY++;
+				currentX--;
 				Utilities.inform("Must stay one the grid.");
 			}
 		}
