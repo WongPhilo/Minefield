@@ -18,18 +18,18 @@ public class fieldPanel extends AppPanel {
         JButton S = new JButton("S");
         JButton SE = new JButton("SE");
 
-        buttonAssigner(NW);
-        buttonAssigner(N);
-        buttonAssigner(NE);
-        buttonAssigner(W);
-        buttonAssigner(E);
-        buttonAssigner(SW);
-        buttonAssigner(S);
-        buttonAssigner(SE);
+        buttonAssigner(NW, this);
+        buttonAssigner(N, this);
+        buttonAssigner(NE, this);
+        buttonAssigner(W, this);
+        buttonAssigner(E, this);
+        buttonAssigner(SW, this);
+        buttonAssigner(S, this);
+        buttonAssigner(SE, this);
     }
 
-    public void buttonAssigner(JButton button) {
-        button.addActionListener(this);
+    public void buttonAssigner(JButton button, fieldPanel panel) {
+        button.addActionListener(panel);
         controlPanel.add(button);
     }
 }

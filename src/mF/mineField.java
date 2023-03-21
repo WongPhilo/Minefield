@@ -12,20 +12,30 @@ class Field extends Model{
 	public Field() {
 		gameOver = false;//initialize mines?
 		mines = new Mine[size][size];
+		setMines();
+		currentX = 0;
+		currentY = 0;
+		current = mines[currentX][currentY];
+	}
+	public void setMines()
+	{
 		int random = 0;
 		for(int i = 0; i<size; i++) {
 			for (int j = 0; j < size; j++) {
 				random = (int) (Math.random() * 100);
-				if (random <= 4) {
+				if (random <= percentMined-1) {
 					mines[i][j] = new Mine(true);
 				} else {
 					mines[i][j] = new Mine(false);
 				}
 			}
 		}
+		mines[0][0] = new Mine(false);
+		mines[20][20] = new Mine(false);
 		int nearby = 0;
 		for(int i = 0; i<size; i++) {
 			for (int j = 0; j < size; j++) {
+				nearby = 0;
 				if(i-1>=0)
 				{
 					if(mines[i-1][j].isMined()) {
@@ -37,7 +47,7 @@ class Field extends Model{
 							nearby++;
 						}
 					}
-					if(j+1<=19)
+					if(j+1<=size-1)
 					{
 						if(mines[i-1][j+1].isMined()) {
 							nearby++;
@@ -50,7 +60,7 @@ class Field extends Model{
 						nearby++;
 					}
 				}
-				if(i+1<=19)
+				if(i+1<=size-1)
 				{
 					if(mines[i+1][j].isMined()) {
 						nearby++;
@@ -61,25 +71,23 @@ class Field extends Model{
 							nearby++;
 						}
 					}
-					if(j+1<=19)
+					if(j+1<=size-1)
 					{
 						if(mines[i+1][j+1].isMined()) {
 							nearby++;
 						}
 					}
 				}
-				if(j+1<=19)
+				if(j+1<=size-1)
 				{
 					if(mines[i][j+1].isMined()) {
 						nearby++;
 					}
 				}
+				mines[i][j].setNearby(nearby);
 			}
 		}
-		currentX = 0;
-		currentY = 0;
-		current = mines[currentX][currentY];
-		current.setStepped(true);
+		mines[0][0].setStepped(true);
 	}
 
 	public void move(Heading heading) {
@@ -87,37 +95,97 @@ class Field extends Model{
 		if(heading == Heading.N)
 		{
 			currentY--;
+			if(currentY<0)
+			{
+				currentY++;
+				Utilities.inform("Must stay one the grid.");
+			}
 		}
 		if(heading == Heading.NE)
 		{
 			currentY--;
 			currentX++;
+			if(currentY<0 || currentX>=size)
+			{
+				currentY++;
+				currentX--;
+				Utilities.inform("Must stay one the grid.");
+			}
 		}
 		if(heading == Heading.NW)
 		{
 			currentY--;
-			currentX++;
+			currentX--;
+			if(currentY<0 || currentX<0)
+			{
+				currentY++;
+				currentX++;
+				Utilities.inform("Must stay one the grid.");
+			}
 		}
 		if(heading == Heading.E)
 		{
 			currentX++;
+			if(currentX>=size)
+			{
+				currentX--;
+				Utilities.inform("Must stay one the grid.");
+			}
 		}
 		if(heading == Heading.W)
 		{
 			currentX--;
+			if(currentX<0)
+			{
+				currentX++;
+				Utilities.inform("Must stay one the grid.");
+			}
 		}
 		if(heading == Heading.SE)
 		{
 			currentY++;
 			currentX++;
+			if(currentY>=size || currentX>=size)
+			{
+				currentY--;
+				currentX--;
+				Utilities.inform("Must stay one the grid.");
+			}
 		}
 		if(heading == Heading.SW)
 		{
 			currentY++;
 			currentX--;
+			if(currentY>=size || currentX<0)
+			{
+				currentY--;
+				currentX++;
+				Utilities.inform("Must stay one the grid.");
+			}
 		}
 		current = mines[currentX][currentY];
 		current.setStepped(true);
+		if(current.isMined())
+		{
+			gameOver(false);
+		}
+		else if(current == mines[20][20])
+		{
+			gameOver(true);
+		}
+		changed();
+	}
+	public void gameOver(boolean won)
+	{
+		if(won)
+			Utilities.inform("Game over, you won!");
+		else
+			Utilities.inform("Game over, you lost.");
+		setMines();
+		currentX = 0;
+		currentY = 0;
+		current = mines[currentX][currentY];
+		changed();
 	}
 }
 
