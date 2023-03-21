@@ -7,12 +7,16 @@ import java.awt.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-abstract public class View extends JPanel implements PropertyChangeListener {
+import static src.MVC.AppPanel.FRAME_HEIGHT;
+import static src.MVC.AppPanel.FRAME_WIDTH;
+
+public class View extends JPanel implements PropertyChangeListener {
 
     protected Model model;
 
     public View(Model m) {
-        model = m;
+        this.model = m;
+        setSize(FRAME_WIDTH, FRAME_HEIGHT);
         model.addPropertyChangeListener(this);
     }
 

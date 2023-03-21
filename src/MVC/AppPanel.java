@@ -24,11 +24,25 @@ public class AppPanel extends JPanel implements PropertyChangeListener, ActionLi
         super();
         this.factory = factory;
         this.model = factory.makeModel();
-        model.addPropertyChangeListener(this);
+        if (model != null) model.addPropertyChangeListener(this);
         this.view = factory.makeView(model);
         controlPanel = new ControlPanel();
         this.add(controlPanel);
         this.add(view);
+        controlPanel.setVisible(true);
+        view.setVisible(true);
+
+        // create my frame with menus and display it
+        frame = new SafeFrame();
+        Container cp = frame.getContentPane();
+        cp.add(this);
+        frame.setJMenuBar(this.createMenuBar());
+        frame.setTitle(factory.getTitle());
+        frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setVisible(true);
+        frame.setVisible(true);
+        display();
     }
 
     protected JMenuBar createMenuBar() {
@@ -109,25 +123,6 @@ public class AppPanel extends JPanel implements PropertyChangeListener, ActionLi
     protected void handleException(Exception e) {
         Utilities.error(e);
     }
-
-    public static void run(AppFactory factory) {
-        try {
-            AppPanel panel = new AppPanel(factory);
-            panel.setSize(FRAME_WIDTH, FRAME_HEIGHT);
-            // create my frame with menus and display it
-            SafeFrame frame = new SafeFrame();
-            Container cp = frame.getContentPane();
-            cp.add(panel);
-            frame.setJMenuBar(panel.createMenuBar());
-            frame.setTitle(factory.getTitle());
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.setVisible(true);
-            panel.setVisible(true);
-            panel.display();
-        } catch (Exception e) {
-            Utilities.error("" + e);
-        }
-    }
     public void setModel(Model newModel) {
         this.model.removePropertyChangeListener(this);
         this.model = newModel;
@@ -137,7 +132,12 @@ public class AppPanel extends JPanel implements PropertyChangeListener, ActionLi
         model.changed();
     }
 
-    public void display() { this.setVisible(true); }
+    public static AppPanel run(AppFactory factory) {
+        AppPanel field = new AppPanel(factory);
+        return field;
+    }
+
+    public void display() { frame.setVisible(true); }
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         repaint();
@@ -145,7 +145,8 @@ public class AppPanel extends JPanel implements PropertyChangeListener, ActionLi
 
     protected class ControlPanel extends JPanel {
         public ControlPanel() {
-            setBackground(Color.GRAY);
+            setBackground(Color.LIGHT_GRAY);
+            setLayout(new GridLayout(3, 3));
         }
     }
 }

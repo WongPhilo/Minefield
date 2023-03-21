@@ -11,7 +11,6 @@ public class fieldView extends View {
 
     public fieldView(Model field) {
         super(field);
-
     }
 
     //display to user to the screen, display mineField (code) grid 2020

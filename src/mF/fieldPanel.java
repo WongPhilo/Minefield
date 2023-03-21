@@ -7,8 +7,6 @@ public class fieldPanel extends AppPanel {
     public fieldPanel(AppFactory factory) {
         super(factory);
 
-        GridLayout lm = new GridLayout(3, 3);
-        setLayout(lm);
         JButton NW = new JButton("NW");
         JButton N = new JButton("N");
         JButton NE = new JButton("NE");
@@ -33,5 +31,10 @@ public class fieldPanel extends AppPanel {
     public void buttonAssigner(JButton button, fieldPanel panel) {
         button.addActionListener(panel);
         controlPanel.add(button);
+    }
+
+    public static void main(String args[]) {
+        AppPanel field = fieldPanel.run(new fieldFactory());
+        field.display();
     }
 }
