@@ -33,9 +33,8 @@ public class AppPanel extends JPanel implements PropertyChangeListener, ActionLi
 
     protected JMenuBar createMenuBar() {
         JMenuBar result = new JMenuBar();
-        JMenu fileMenu = Utilities.makeMenu("File", new String[]{"New", "Save", "SaveAs", "Open", "Quit"}, this);
-        result.add(fileMenu);
-        result.add(Utilities.makeMenu("Edit", factory.getEditCommands(), new EditHandler()));
+        result.add(Utilities.makeMenu("File", new String[]{"New", "Save", "SaveAs", "Open", "Quit"}, this));
+        result.add(Utilities.makeMenu("Edit", factory.getEditCommands(), this));
         return result;
     }
 
@@ -124,6 +123,7 @@ public class AppPanel extends JPanel implements PropertyChangeListener, ActionLi
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.setVisible(true);
             panel.setVisible(true);
+            panel.display();
         } catch (Exception e) {
             Utilities.error("" + e);
         }
@@ -136,19 +136,13 @@ public class AppPanel extends JPanel implements PropertyChangeListener, ActionLi
         view.setModel(this.model);
         model.changed();
     }
+
+    public void display() { this.setVisible(true); }
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         repaint();
     }
 
-    protected class EditHandler implements ActionListener {
-        public void actionPerformed(ActionEvent e){
-            // parses edit commands (aka commands specific to mineField, only has move so no special cases)
-            String cmmd = e.getActionCommand();
-            Command c = factory.makeEditCommand(model, cmmd);
-            c.execute();
-        }
-    }
     protected class ControlPanel extends JPanel {
         public ControlPanel() {
             setBackground(Color.GRAY);
