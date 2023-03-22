@@ -127,7 +127,7 @@ public class AppPanel extends JPanel implements PropertyChangeListener, ActionLi
         this.model.initSupport(); // defined in Bean
         this.model.addPropertyChangeListener(this);
         this.remove(view);
-        this.view = factory.makeView(model);
+        this.view = factory.makeView(model); //bandaid solution, but no time!
         view.setBackground(Color.GRAY);
         this.add(view);
         view.setModel(this.model);
