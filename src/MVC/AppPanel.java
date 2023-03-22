@@ -145,6 +145,7 @@ public class AppPanel extends JPanel implements PropertyChangeListener, ActionLi
         view.setBackground(Color.GRAY);
         this.add(view);
         view.setModel(this.model);
+        display();
         model.changed();
     }
     public void display() { frame.setVisible(true); }
