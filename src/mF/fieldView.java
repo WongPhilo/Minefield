@@ -37,6 +37,7 @@ public class fieldView extends View {
         repaint();
         updateUI();
     }
+
     public void reset() {
         Field m = (Field)model;
         for (int row = 0; row < size; row++) {
@@ -44,6 +45,9 @@ public class fieldView extends View {
                 m.mines[row][col].setText("?");
                 if (row == size - 1 && col == size - 1) {
                     m.mines[row][col].setBorder(BorderFactory.createLineBorder(Color.GREEN));
+                } else if (m.mines[row][col].isStepped()) {
+                    m.mines[row][col].setText(String.valueOf(m.mines[row][col].getNearby()));
+                    m.mines[row][col].setBorder(BorderFactory.createLineBorder(Color.WHITE));
                 } else {
                     m.mines[row][col].setBorder(BorderFactory.createLineBorder(Color.BLACK));
                 }

@@ -62,14 +62,14 @@ public class fieldFactory implements AppFactory {
     }
 
     @Override
-    public String getHelp() {
-        return new String("All four cardinal directions and all four of their composites are represented. " +
-                "Move in a certain direction to detect mines and find a safe way out. " +
-                "The goal is to reach the bottom-right corner, bordered in green, without setting off any mines.");
+    public String[] getHelp() {
+        return new String[]{"All four cardinal directions and all four of their composites are represented.",
+                "Move in a certain direction to detect mines and find a safe way out.",
+                "The goal is to reach the bottom-right corner, bordered in green, without setting off any mines."};
     }
 
     @Override
     public String about() {
-        return new String("2023 Spring 2023 CS-151 Sec 02 Team 7 - mineField - 2023");
+        return new String("Spring 2023 CS-151 Sec 02 Team 7 - mineField");
     }
 }
