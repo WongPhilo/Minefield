@@ -90,7 +90,7 @@ public class AppPanel extends JPanel implements PropertyChangeListener, ActionLi
 
                 case "New": {
                     if (Utilities.confirm("Are you sure? Unsaved changes will be lost!")) {
-                        model = new Model();
+                        model = factory.makeModel();
                         view.setModel(model);
                     }
                     break;
