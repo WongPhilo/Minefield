@@ -81,6 +81,7 @@ public class AppPanel extends JPanel implements PropertyChangeListener, ActionLi
                         ObjectInputStream is = new ObjectInputStream(new FileInputStream(fName));
                         Object o = is.readObject();
                         model = (Model)o;
+                        model.initSupport();
                         this.setModel(model);
                         is.close();
                     }
