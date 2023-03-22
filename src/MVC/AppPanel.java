@@ -57,8 +57,12 @@ public class AppPanel extends JPanel implements PropertyChangeListener, ActionLi
         try {
             switch (cmmd) {
                 case "Save": {
-                    String fName = Utilities.getFileName((String) null, true, savedName);
-                    savedName = fName;
+                    String fName;
+                    if(savedName.equals("")){
+                        fName = Utilities.getFileName((String) null, false, savedName);
+                        savedName = fName;
+                    }
+                    fName = savedName;
                     ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(fName));
                     os.writeObject(this.model);
                     os.close();
@@ -66,7 +70,7 @@ public class AppPanel extends JPanel implements PropertyChangeListener, ActionLi
                 }
 
                 case "SaveAs": {
-                    String fName = JOptionPane.showInputDialog("What name would you like to save as?");
+                    String fName = Utilities.getFileName((String) null, false, savedName);
                     savedName = fName;
                     ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(fName));
                     os.writeObject(this.model);
