@@ -15,7 +15,6 @@ import static src.mF.Field.size;
 public class fieldView extends View {
     public fieldView(Field m) {
         super(m);
-        removeAll();
         setLayout(new GridLayout(size, size));
         for (int row = 0; row < size; row++) {
             for (int col = 0; col < size; col++) {
