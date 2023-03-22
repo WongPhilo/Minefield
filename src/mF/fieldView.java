@@ -61,7 +61,7 @@ public class fieldView extends View {
         super.paintComponent(gc);
         Field field = (Field)model;
         field.mines[field.currentX][field.currentY].setText(String.valueOf(field.mines[field.currentX][field.currentY].getNearby()));
-        field.mines[field.currentX][field.currentY].setBorder(BorderFactory.createLineBorder(Color.white));
+        field.mines[field.currentX][field.currentY].setBorder(BorderFactory.createLineBorder(Color.WHITE));
     }
 }
 

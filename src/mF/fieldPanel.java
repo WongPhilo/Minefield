@@ -39,19 +39,6 @@ public class fieldPanel extends AppPanel {
 
         controlPanel.setVisible(true);
     }
-
-    public void actionPerformed(ActionEvent e) {
-        String cmmd = e.getActionCommand();
-        try {
-            if (Arrays.asList(factory.getEditCommands()).contains(cmmd)) {
-                factory.makeEditCommand(model, cmmd, this).execute();
-            }
-        } catch (Exception ex) {
-            handleException(ex); // all error handling done here!
-        }
-
-        super.actionPerformed(e);
-    }
     public static void buttonAdder(JButton b, AppPanel p, JPanel c) {
         b.addActionListener(p);
         c.add(b);
