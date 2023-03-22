@@ -33,21 +33,22 @@ public class fieldView extends View {
     @Override
     public void setModel(Model newModel) {
         this.model = newModel;
-        reset(model);
+        reset();
         repaint();
+        updateUI();
     }
-    public void reset(Model m) {
-        Field field = (Field)m;
+    public void reset() {
+        Field m = (Field)model;
         for (int row = 0; row < size; row++) {
             for (int col = 0; col < size; col++) {
-                field.mines[row][col].setText("?");
+                m.mines[row][col].setText("?");
                 if (row == size - 1 && col == size - 1) {
-                    field.mines[row][col].setBorder(BorderFactory.createLineBorder(Color.GREEN));
+                    m.mines[row][col].setBorder(BorderFactory.createLineBorder(Color.GREEN));
                 } else {
-                    field.mines[row][col].setBorder(BorderFactory.createLineBorder(Color.BLACK));
+                    m.mines[row][col].setBorder(BorderFactory.createLineBorder(Color.BLACK));
                 }
 
-                this.add(field.mines[row][col]);
+                this.add(m.mines[row][col]);
             }
         }
     }

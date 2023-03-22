@@ -203,6 +203,7 @@ class Field extends Model {
 
 class Mine extends JLabel {
 	public boolean mined;
+
 	public int nearby;
 	public boolean stepped;
 
