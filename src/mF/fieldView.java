@@ -16,12 +16,11 @@ public class fieldView extends View {
     public fieldView(Field m) {
         super(m);
         removeAll();
-        int dim = size;
-        setLayout(new GridLayout(dim, dim));
-        for (int row = 0; row < dim; row++) {
-            for (int col = 0; col < dim; col++) {
+        setLayout(new GridLayout(size, size));
+        for (int row = 0; row < size; row++) {
+            for (int col = 0; col < size; col++) {
                 m.mines[row][col].setText("?");
-                if (row == dim - 1 && col == dim - 1) {
+                if (row == size - 1 && col == size - 1) {
                     m.mines[row][col].setBorder(BorderFactory.createLineBorder(Color.GREEN));
                 } else {
                     m.mines[row][col].setBorder(BorderFactory.createLineBorder(Color.BLACK));
@@ -32,6 +31,27 @@ public class fieldView extends View {
         }
     }
 
+    @Override
+    public void setModel(Model newModel) {
+        this.model = newModel;
+        reset(model);
+        repaint();
+    }
+    public void reset(Model m) {
+        Field field = (Field)m;
+        for (int row = 0; row < size; row++) {
+            for (int col = 0; col < size; col++) {
+                field.mines[row][col].setText("?");
+                if (row == size - 1 && col == size - 1) {
+                    field.mines[row][col].setBorder(BorderFactory.createLineBorder(Color.GREEN));
+                } else {
+                    field.mines[row][col].setBorder(BorderFactory.createLineBorder(Color.BLACK));
+                }
+
+                this.add(field.mines[row][col]);
+            }
+        }
+    }
     //display to user to the screen, display mineField (code) grid 2020
     public void paintComponent(Graphics gc) {
         super.paintComponent(gc);
