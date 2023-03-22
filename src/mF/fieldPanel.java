@@ -52,14 +52,6 @@ public class fieldPanel extends AppPanel {
 
         super.actionPerformed(e);
     }
-
-    public void setModel(Model newModel) {
-        Field newField = new Field();
-        model.removePropertyChangeListener(this);
-        this.model = newField;
-        model.addPropertyChangeListener(this);
-        repaint();
-    }
     public static void buttonAdder(JButton b, AppPanel p, JPanel c) {
         b.addActionListener(p);
         c.add(b);

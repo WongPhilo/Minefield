@@ -81,7 +81,7 @@ public class AppPanel extends JPanel implements PropertyChangeListener, ActionLi
                         ObjectInputStream is = new ObjectInputStream(new FileInputStream(fName));
                         Object o = is.readObject();
                         model = (Model)o;
-                        view.setModel(model);
+                        this.setModel(model);
                         is.close();
                     }
 
@@ -91,7 +91,7 @@ public class AppPanel extends JPanel implements PropertyChangeListener, ActionLi
                 case "New": {
                     if (Utilities.confirm("Are you sure? Unsaved changes will be lost!")) {
                         model = factory.makeModel();
-                        view.setModel(model);
+                        this.setModel(model);
                     }
                     break;
                 }
